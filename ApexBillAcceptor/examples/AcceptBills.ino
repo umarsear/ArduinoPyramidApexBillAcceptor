@@ -16,18 +16,21 @@ Apex5400BillAcceptor *billAcceptor;
 int code;
 
 void setup() {
-  Serial.begin(9600);  
-  billAcceptor = new Apex5400BillAcceptor(PIN_ENABLE, PIN_INTERRUPT_LINE, PIN_SEND_LINE, PIN_TTL_RX);    
-  //billAcceptor->disable();
-  //billAcceptor->toggle();
-  //billAcceptor->enable();
+	Serial.begin(9600);  
+	billAcceptor = new Apex5400BillAcceptor(PIN_ENABLE, PIN_INTERRUPT_LINE, PIN_SEND_LINE, PIN_TTL_RX);    
+	//billAcceptor->disable();
+	//billAcceptor->toggle();
+	//billAcceptor->enable();
 }
 
 void loop() {
-  if(code = billAcceptor->checkForBill()){
-    Serial.print("Code: 0x");
-    Serial.print(code, HEX);
-    Serial.print(", Description: ");
-    Serial.println(billAcceptor->getDescription(code));
-  }
+	if(code = billAcceptor->checkForBill()){
+		Serial.print("Code: 0x");
+		Serial.print(code, HEX);
+		Serial.print(", $ value");
+		Serial.print(billAcceptor->getValue(code));
+		Serial.print(", Description: ");
+		Serial.println(billAcceptor->getDescription(code));
+		
+	}
 }
