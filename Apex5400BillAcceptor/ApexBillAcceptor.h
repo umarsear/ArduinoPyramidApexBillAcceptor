@@ -1,15 +1,15 @@
 #include <ReceiveOnlySoftwareSerial.h> //http://gammon.com.au/Arduino/ReceiveOnlySoftwareSerial.zip
 #include <Arduino.h>
 
-#ifndef APEX5400BILLACCEPTOR_H
-#define APEX5400BILLACCEPTOR_H
+#ifndef APEXBILLACCEPTOR_H
+#define APEXBILLACCEPTOR_H
 
 struct codeMap{
 	int code;
 	char description[12];
 };
 
-class Apex5400BillAcceptor{ 
+class ApexBillAcceptor{ 
 	
 	private:
 		int pin_enable_line;
@@ -35,11 +35,13 @@ class Apex5400BillAcceptor{
 		
 	public:
 		ReceiveOnlySoftwareSerial *mySerial;
-		Apex5400BillAcceptor(int, int, int, int);
+		ApexBillAcceptor(int, int, int, int);
 	
 		int checkForBill();
 		
 		char* getDescription(int);
+	
+		int getValue(int);
 		
 		void enable();
 		
