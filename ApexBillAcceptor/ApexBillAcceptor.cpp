@@ -43,7 +43,7 @@ char* ApexBillAcceptor::getDescription(int codeFromBillAcceptor){
 
 //returns Bill value
 int ApexBillAcceptor::getValue(int codeFromBillAcceptor){
-	switch(billCode) {
+	switch(codeFromBillAcceptor) {
 		case 0x81:
 			return(1);
 			break;
