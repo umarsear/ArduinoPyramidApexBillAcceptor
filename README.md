@@ -1,6 +1,6 @@
 # ArduinoPyramidApexBillAcceptor
 
-This is a small program for using the Apex Pyramid 5000 bill acceptor via Serial.
+This is a small program for using the Apex Pyramid bill acceptor via Serial.
 
 Configuration info: http://imgur.com/a/NWwfP
 
