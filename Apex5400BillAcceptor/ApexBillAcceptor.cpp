@@ -1,6 +1,6 @@
-#include <Apex5400BillAcceptor.h>
+#include <ApexBillAcceptor.h>
 
-Apex5400BillAcceptor::Apex5400BillAcceptor(int a, int b, int c, int d){
+ApexBillAcceptor::ApexBillAcceptor(int a, int b, int c, int d){
 	pin_enable_line = a;
 	pinMode(pin_enable_line, OUTPUT);
 	digitalWrite(pin_enable_line, LOW);
@@ -17,7 +17,7 @@ Apex5400BillAcceptor::Apex5400BillAcceptor(int a, int b, int c, int d){
 	mySerial->begin(600);
 }
 
-int Apex5400BillAcceptor::checkForBill(){
+int ApexBillAcceptor::checkForBill(){
 	if (digitalRead(pin_interrupt_line) == LOW){
 		digitalWrite(pin_send_line, LOW);
 		digitalWrite(pin_send_line, HIGH);  
@@ -32,7 +32,7 @@ int Apex5400BillAcceptor::checkForBill(){
 	return 0;
 }
 
-char* Apex5400BillAcceptor::getDescription(int codeFromBillAcceptor){
+char* ApexBillAcceptor::getDescription(int codeFromBillAcceptor){
 	for(int i=0; i < sizeof(codes)/sizeof(codes[0]); i++){
 		if (codes[i].code == codeFromBillAcceptor){
 			return codes[i].description;
@@ -41,14 +41,39 @@ char* Apex5400BillAcceptor::getDescription(int codeFromBillAcceptor){
 	return "(code undefined)";
 }
 
-void Apex5400BillAcceptor::enable(){
+int ApexBillAcceptor::getValue(int codeFromBillAcceptor){
+	switch(billCode) {
+		case 0x81:
+			return(1);
+			break;
+		case 0x83:
+			return(5);      
+			break;
+		case 0x84:
+			return(10);
+			break;
+		case 0x85:
+			return(20);  
+			break;
+		case 0x86:
+			return(50);
+			break;
+		case 0x87:
+			return(100);  
+			break;			
+		default:
+			return(0);
+			break;	
+}
+
+void ApexBillAcceptor::enable(){
 	digitalWrite(pin_enable_line, LOW);
 }
 
-void Apex5400BillAcceptor::disable(){
+void ApexBillAcceptor::disable(){
 	digitalWrite(pin_enable_line, HIGH);
 }
 
-void Apex5400BillAcceptor::toggle(){
+void ApexBillAcceptor::toggle(){
 	digitalWrite(pin_enable_line, !digitalRead(pin_enable_line));
 }
