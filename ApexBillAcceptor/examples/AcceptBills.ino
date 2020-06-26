@@ -13,7 +13,7 @@
 #define PIN_SEND_LINE 9 //White/Blue wire, Host Ready Signal
 #define PIN_TTL_RX 10 //Green wire, Transmit Data Line from acceptor
 
-Apex5400BillAcceptor *billAcceptor;
+ApexBillAcceptor *billAcceptor;
 int code;
 
 void setup() {
