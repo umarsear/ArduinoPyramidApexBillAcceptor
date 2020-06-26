@@ -65,6 +65,7 @@ int ApexBillAcceptor::getValue(int codeFromBillAcceptor){
 		default:
 			return(0);
 			break;	
+	}
 }
 
 void ApexBillAcceptor::enable(){
