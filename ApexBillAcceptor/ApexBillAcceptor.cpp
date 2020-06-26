@@ -41,6 +41,7 @@ char* ApexBillAcceptor::getDescription(int codeFromBillAcceptor){
 	return "(code undefined)";
 }
 
+//returns Bill value
 int ApexBillAcceptor::getValue(int codeFromBillAcceptor){
 	switch(billCode) {
 		case 0x81:
